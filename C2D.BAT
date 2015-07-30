@@ -151,8 +151,13 @@ pause
 @call :tmsFuncFolderMove "Music" %userType%
 @call :tmsFuncFolderMove "Downloads" %userType%
 @call :tmsFuncFolderMove "Desktop" %userType%
-@call :tmsFuncFolderMove ".android" %userType%
 @call :tmsFuncFolderMove "Virtual Machines" %userType%
+@call :tmsFuncFolderMove ".VirtualBox" %userType%
+@call :tmsFuncFolderMove ".android" %userType%
+@call :tmsFuncFolderMove ".idlerc" %userType%
+@call :tmsFuncFolderMove ".ssh" %userType%
+@call :tmsFuncFolderMove ".atom" %userType%
+@call :tmsFuncFolderMove ".config" %userType%
 @echo ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 @echo %sourceUserName%用户文件转移结束...
 @pause
