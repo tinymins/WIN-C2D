@@ -35,9 +35,9 @@ set currentBackupDriver=D
 set targetBackupDriver=D
 echo 【分区设置】
 echo ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-set /p currentSystemDriver=请输入当前文件系统下需转移数据的Win7系统所在分区盘符(默认：C): 
-set /p currentBackupDriver=请输入当前文件系统下文件转移目标所在分区盘符(默认：D): 
-set /p  targetBackupDriver=请输入目标文件系统下文件转移目标所在分区盘符(默认：D): 
+set /p currentSystemDriver=请输入当前文件系统下需转移数据的Win7系统所在分区盘符(默认：C):
+set /p currentBackupDriver=请输入当前文件系统下文件转移目标所在分区盘符(默认：D):
+set /p  targetBackupDriver=请输入目标文件系统下文件转移目标所在分区盘符(默认：D):
 echo ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 color 0E
 echo 当前文件系统下需转移数据的Win7系统所在分区："%currentSystemDriver%:\"
@@ -70,7 +70,7 @@ set /a n+=1
 echo !n!.%%i
 )
 echo =======================
-set /p userLine=请选择需要转移文件的用户(输入0退出,X to input yourself): 
+set /p userLine=请选择需要转移文件的用户(输入0退出,X to input yourself):
 if %userLine%==0 goto :end
 if /i %userLine%==N ( goto:start )
 if /i %userLine%==X (
@@ -116,7 +116,7 @@ if /i %moveAppData%==y echo ◎整个"AppData"文件夹(包括Local,LocalLow,Roaming文件
 if /i %moveAppDataLocal%==y echo ◎"AppData\\Local"文件夹
 if /i %moveAppDataLocalLow%==y echo ◎"AppData\\LocalLow"文件夹
 if /i %moveAppDataRoaming%==y echo ◎"AppData\\Roaming"文件夹
-set /p userConform="请确认(Y/N):" 
+set /p userConform="请确认(Y/N):"
 if /i %userConform%==N goto :start
 if /i NOT %userConform%==Y goto :userConfirm
 
@@ -131,7 +131,11 @@ pause
 @if /i %moveAppData%==Y (
 	call :tmsFuncFolderMove "AppData"
 ) else (
-	if /i %moveAppDataLocal%==Y call :tmsFuncFolderMove "AppData\Local"
+	if /i %moveAppDataLocal%==Y (
+		call :tmsFuncFolderMove "AppData\Local"
+	) else (
+		call :tmsFuncFolderMove "AppData\Local\TslGame"
+	)
 	if /i %moveAppDataLocalLow%==Y call :tmsFuncFolderMove "AppData\LocalLow"
 	if /i %moveAppDataRoaming%==Y call :tmsFuncFolderMove "AppData\Roaming"
 )
@@ -152,11 +156,10 @@ pause
 @call :tmsFuncFolderMove "Downloads" %userType%
 @call :tmsFuncFolderMove "Desktop" %userType%
 @call :tmsFuncFolderMove "Virtual Machines" %userType%
-@call :tmsFuncFolderMove ".VirtualBox" %userType%
 @call :tmsFuncFolderMove ".android" %userType%
 @call :tmsFuncFolderMove ".idlerc" %userType%
 @call :tmsFuncFolderMove ".ssh" %userType%
-@call :tmsFuncFolderMove ".atom" %userType%
+@call :tmsFuncFolderMove ".vscode" %userType%
 @call :tmsFuncFolderMove ".config" %userType%
 @echo ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 @echo %sourceUserName%用户文件转移结束...
