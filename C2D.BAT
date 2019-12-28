@@ -128,22 +128,22 @@ pause
 @echo on
 
 
-@if /i %moveAppData%==Y (
-	call :tmsFuncFolderMove "AppData"
-) else (
-	if /i %moveAppDataLocal%==Y (
-		call :tmsFuncFolderMove "AppData\Local"
-	) else (
-		call :tmsFuncFolderMove "AppData\Local\TslGame"
-	)
-	if /i %moveAppDataLocalLow%==Y call :tmsFuncFolderMove "AppData\LocalLow"
-	if /i %moveAppDataRoaming%==Y call :tmsFuncFolderMove "AppData\Roaming"
-)
 @set userType=1
 @if /i "%sourceUserName%"=="All Users" ( @set userType=0 )
 @if /i "%sourceUserName%"=="Default" ( @set userType=0 )
 @if /i "%sourceUserName%"=="Default User" ( @set userType=0 )
 @if /i "%sourceUserName%"=="Public" ( @set userType=0 )
+@if /i %moveAppData%==Y (
+	call :tmsFuncFolderMove "AppData" %userType%
+) else (
+	if /i %moveAppDataLocal%==Y (
+		call :tmsFuncFolderMove "AppData\Local" %userType%
+	) else (
+		call :tmsFuncFolderMove "AppData\Local\TslGame" %userType%
+	)
+	if /i %moveAppDataLocalLow%==Y call :tmsFuncFolderMove "AppData\LocalLow" %userType%
+	if /i %moveAppDataRoaming%==Y call :tmsFuncFolderMove "AppData\Roaming" %userType%
+)
 @call :tmsFuncFolderMove "Saved Games" %userType%
 @call :tmsFuncFolderMove "Contacts" %userType%
 @call :tmsFuncFolderMove "Links" %userType%
