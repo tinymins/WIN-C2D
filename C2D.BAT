@@ -66,8 +66,8 @@ echo 本机用户列表：
 dir %currentSystemDriver%:\Users /b /a:d /o>%userTempFile%
 set n=0
 for /f "delims=" %%i in (%userTempFile%) do (
-set /a n+=1
-echo !n!.%%i
+	set /a n+=1
+	echo !n!.%%i
 )
 echo =======================
 set /p userLine=请选择需要转移文件的用户(输入0退出,X to input yourself):
@@ -127,40 +127,41 @@ echo 按任意键开始用户"%sourceUserName%"个人文件转移
 pause
 @echo on
 
-
+@REM 判断用户类型
 @set userType=1
 @if /i "%sourceUserName%"=="All Users" ( @set userType=0 )
 @if /i "%sourceUserName%"=="Default" ( @set userType=0 )
 @if /i "%sourceUserName%"=="Default User" ( @set userType=0 )
 @if /i "%sourceUserName%"=="Public" ( @set userType=0 )
+@REM 开始转移数据
 @if /i %moveAppData%==Y (
-	call :MoveFolder "AppData" %userType%
+	call :MoveFolder "" "AppData" %userType%
 ) else (
 	if /i %moveAppDataLocal%==Y (
-		call :MoveFolder "AppData\Local" %userType%
+		call :MoveFolder "AppData\" "Local" %userType%
 	) else (
-		call :MoveFolder "AppData\Local\TslGame" %userType%
+		call :MoveFolder "AppData\Local\" "TslGame" %userType%
 	)
-	if /i %moveAppDataLocalLow%==Y call :MoveFolder "AppData\LocalLow" %userType%
-	if /i %moveAppDataRoaming%==Y call :MoveFolder "AppData\Roaming" %userType%
+	if /i %moveAppDataLocalLow%==Y call :MoveFolder "" "AppData\LocalLow" %userType%
+	if /i %moveAppDataRoaming%==Y call :MoveFolder "" "AppData\Roaming" %userType%
 )
-@call :MoveFolder "Saved Games" %userType%
-@call :MoveFolder "Contacts" %userType%
-@call :MoveFolder "Links" %userType%
-@call :MoveFolder "Favorites" %userType%
-@call :MoveFolder "Searches" %userType%
-@call :MoveFolder "Videos" %userType%
-@call :MoveFolder "Pictures" %userType%
-@call :MoveFolder "Documents" %userType%
-@call :MoveFolder "Music" %userType%
-@call :MoveFolder "Downloads" %userType%
-@call :MoveFolder "Desktop" %userType%
-@call :MoveFolder "Virtual Machines" %userType%
-@call :MoveFolder ".android" %userType%
-@call :MoveFolder ".idlerc" %userType%
-@call :MoveFolder ".ssh" %userType%
-@call :MoveFolder ".vscode" %userType%
-@call :MoveFolder ".config" %userType%
+@call :MoveFolder "" "Saved Games" %userType%
+@call :MoveFolder "" "Contacts" %userType%
+@call :MoveFolder "" "Links" %userType%
+@call :MoveFolder "" "Favorites" %userType%
+@call :MoveFolder "" "Searches" %userType%
+@call :MoveFolder "" "Videos" %userType%
+@call :MoveFolder "" "Pictures" %userType%
+@call :MoveFolder "" "Documents" %userType%
+@call :MoveFolder "" "Music" %userType%
+@call :MoveFolder "" "Downloads" %userType%
+@call :MoveFolder "" "Desktop" %userType%
+@call :MoveFolder "" "Virtual Machines" %userType%
+@call :MoveFolder "" ".android" %userType%
+@call :MoveFolder "" ".idlerc" %userType%
+@call :MoveFolder "" ".ssh" %userType%
+@call :MoveFolder "" ".vscode" %userType%
+@call :MoveFolder "" ".config" %userType%
 @echo ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 @echo %sourceUserName%用户文件转移结束...
 @pause
@@ -173,16 +174,24 @@ pause
 @exit
 
 :MoveFolder
-	@set fldName=%1
+	@set fldPath=%1
+	@set fldPath=%fldPath:"=%
+	@set fldName=%2
 	@set fldName=%fldName:"=%
-	@set userType=%2
-	@if not exist "%currentBackupDriver%:\Backup\Users\%targetUserName%\%fldName%" @mkdir "%currentBackupDriver%:\Backup\Users\%targetUserName%\%fldName%"
-	@if exist "%currentSystemDriver%:\Users\%sourceUserName%\%fldName%" (
-		@robocopy "%currentSystemDriver%:\Users\%sourceUserName%\%fldName%" "%currentBackupDriver%:\Backup\Users\%targetUserName%\%fldName%" /E /COPYALL /XJ
-		@rmdir "%currentSystemDriver%:\Users\%sourceUserName%\%fldName%" /S /Q
-		@mklink /J "%currentSystemDriver%:\Users\%sourceUserName%\%fldName%" "%targetBackupDriver%:\Backup\Users\%targetUserName%\%fldName%"
+	@set userType=%3
+	@REM 判断如果已经是硬链接则直接删除目录点
+	@for /f "tokens=*" %%a in ('dir /b /a:l "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%" 2^>nul') do @(
+		@if "%%a"=="%fldName%" @rmdir "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%%fldName%" /S /Q
+	)
+	@REM 目标位置不存在则创建
+	@if not exist "%currentBackupDriver%:\Backup\Users\%targetUserName%\%fldPath%%fldName%" @mkdir "%currentBackupDriver%:\Backup\Users\%targetUserName%\%fldPath%%fldName%"
+	@REM 原始位置存在则移动目录树并创建硬链接 否则根据用户类型决定是否创建
+	@if exist "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%%fldName%" (
+		@robocopy "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%%fldName%" "%currentBackupDriver%:\Backup\Users\%targetUserName%\%fldPath%%fldName%" /E /COPYALL /XJ
+		@rmdir "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%%fldName%" /S /Q
+		@mklink /J "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%%fldName%" "%targetBackupDriver%:\Backup\Users\%targetUserName%\%fldPath%%fldName%"
 	) else (
-		@if "%userType%"=="1" @mklink /J "%currentSystemDriver%:\Users\%sourceUserName%\%fldName%" "%targetBackupDriver%:\Backup\Users\%targetUserName%\%fldName%"
+		@if "%userType%"=="1" @mklink /J "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%%fldName%" "%targetBackupDriver%:\Backup\Users\%targetUserName%\%fldPath%%fldName%"
 	)
 	@goto :eof
 
