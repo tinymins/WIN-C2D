@@ -17,11 +17,11 @@ set UAC=0
 bcdedit>nul
 if errorlevel 1 set UAC=1
 if %UAC%==1 (
- color CE
- set exitconf=N
- echo 没有管理员权限，请以管理员权限运行该程序！
- set /p exitconf=输入y忽略管理员权限验证，造成的后果自行承担：
- if /i NOT !exitconf!==Y (goto :end)
+	color CE
+	set exitconf=N
+	echo 没有管理员权限，请以管理员权限运行该程序！
+	set /p exitconf=输入y忽略管理员权限验证，造成的后果自行承担：
+	if /i NOT !exitconf!==Y (goto :end)
 )
 REM 已确认管理员权限
 
@@ -134,33 +134,33 @@ pause
 @if /i "%sourceUserName%"=="Default User" ( @set userType=0 )
 @if /i "%sourceUserName%"=="Public" ( @set userType=0 )
 @if /i %moveAppData%==Y (
-	call :tmsFuncFolderMove "AppData" %userType%
+	call :MoveFolder "AppData" %userType%
 ) else (
 	if /i %moveAppDataLocal%==Y (
-		call :tmsFuncFolderMove "AppData\Local" %userType%
+		call :MoveFolder "AppData\Local" %userType%
 	) else (
-		call :tmsFuncFolderMove "AppData\Local\TslGame" %userType%
+		call :MoveFolder "AppData\Local\TslGame" %userType%
 	)
-	if /i %moveAppDataLocalLow%==Y call :tmsFuncFolderMove "AppData\LocalLow" %userType%
-	if /i %moveAppDataRoaming%==Y call :tmsFuncFolderMove "AppData\Roaming" %userType%
+	if /i %moveAppDataLocalLow%==Y call :MoveFolder "AppData\LocalLow" %userType%
+	if /i %moveAppDataRoaming%==Y call :MoveFolder "AppData\Roaming" %userType%
 )
-@call :tmsFuncFolderMove "Saved Games" %userType%
-@call :tmsFuncFolderMove "Contacts" %userType%
-@call :tmsFuncFolderMove "Links" %userType%
-@call :tmsFuncFolderMove "Favorites" %userType%
-@call :tmsFuncFolderMove "Searches" %userType%
-@call :tmsFuncFolderMove "Videos" %userType%
-@call :tmsFuncFolderMove "Pictures" %userType%
-@call :tmsFuncFolderMove "Documents" %userType%
-@call :tmsFuncFolderMove "Music" %userType%
-@call :tmsFuncFolderMove "Downloads" %userType%
-@call :tmsFuncFolderMove "Desktop" %userType%
-@call :tmsFuncFolderMove "Virtual Machines" %userType%
-@call :tmsFuncFolderMove ".android" %userType%
-@call :tmsFuncFolderMove ".idlerc" %userType%
-@call :tmsFuncFolderMove ".ssh" %userType%
-@call :tmsFuncFolderMove ".vscode" %userType%
-@call :tmsFuncFolderMove ".config" %userType%
+@call :MoveFolder "Saved Games" %userType%
+@call :MoveFolder "Contacts" %userType%
+@call :MoveFolder "Links" %userType%
+@call :MoveFolder "Favorites" %userType%
+@call :MoveFolder "Searches" %userType%
+@call :MoveFolder "Videos" %userType%
+@call :MoveFolder "Pictures" %userType%
+@call :MoveFolder "Documents" %userType%
+@call :MoveFolder "Music" %userType%
+@call :MoveFolder "Downloads" %userType%
+@call :MoveFolder "Desktop" %userType%
+@call :MoveFolder "Virtual Machines" %userType%
+@call :MoveFolder ".android" %userType%
+@call :MoveFolder ".idlerc" %userType%
+@call :MoveFolder ".ssh" %userType%
+@call :MoveFolder ".vscode" %userType%
+@call :MoveFolder ".config" %userType%
 @echo ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 @echo %sourceUserName%用户文件转移结束...
 @pause
@@ -172,29 +172,29 @@ pause
 @pause
 @exit
 
-:tmsFuncFolderMove
- @set fldName=%1
- @set fldName=%fldName:"=%
- @set userType=%2
- @if not exist "%currentBackupDriver%:\Backup\Users\%targetUserName%\%fldName%" @mkdir "%currentBackupDriver%:\Backup\Users\%targetUserName%\%fldName%"
- @if exist "%currentSystemDriver%:\Users\%sourceUserName%\%fldName%" (
-  @robocopy "%currentSystemDriver%:\Users\%sourceUserName%\%fldName%" "%currentBackupDriver%:\Backup\Users\%targetUserName%\%fldName%" /E /COPYALL /XJ
-  @rmdir "%currentSystemDriver%:\Users\%sourceUserName%\%fldName%" /S /Q
-  @mklink /J "%currentSystemDriver%:\Users\%sourceUserName%\%fldName%" "%targetBackupDriver%:\Backup\Users\%targetUserName%\%fldName%"
- ) else (
-  @if "%userType%"=="1" @mklink /J "%currentSystemDriver%:\Users\%sourceUserName%\%fldName%" "%targetBackupDriver%:\Backup\Users\%targetUserName%\%fldName%"
- )
- @goto :eof
+:MoveFolder
+	@set fldName=%1
+	@set fldName=%fldName:"=%
+	@set userType=%2
+	@if not exist "%currentBackupDriver%:\Backup\Users\%targetUserName%\%fldName%" @mkdir "%currentBackupDriver%:\Backup\Users\%targetUserName%\%fldName%"
+	@if exist "%currentSystemDriver%:\Users\%sourceUserName%\%fldName%" (
+		@robocopy "%currentSystemDriver%:\Users\%sourceUserName%\%fldName%" "%currentBackupDriver%:\Backup\Users\%targetUserName%\%fldName%" /E /COPYALL /XJ
+		@rmdir "%currentSystemDriver%:\Users\%sourceUserName%\%fldName%" /S /Q
+		@mklink /J "%currentSystemDriver%:\Users\%sourceUserName%\%fldName%" "%targetBackupDriver%:\Backup\Users\%targetUserName%\%fldName%"
+	) else (
+		@if "%userType%"=="1" @mklink /J "%currentSystemDriver%:\Users\%sourceUserName%\%fldName%" "%targetBackupDriver%:\Backup\Users\%targetUserName%\%fldName%"
+	)
+	@goto :eof
 
 :G_getrowstr
- set %3=
- set n=0
- for /f "delims=" %%i in (%2) do (
-  set /a n+=1
-  REM echo !n!
-  if !n!==%1 (
-   set %3=%%i
-   goto :eof
-  )
- )
- goto :eof
+	set %3=
+	set n=0
+	for /f "delims=" %%i in (%2) do (
+		set /a n+=1
+		REM echo !n!
+		if !n!==%1 (
+		set %3=%%i
+		goto :eof
+		)
+	)
+	goto :eof
