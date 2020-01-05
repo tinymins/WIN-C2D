@@ -1,4 +1,4 @@
-WIN7-C2D
+WIN-C2D
 ========
 
-Win7 Personal File Mover
+Windows Personal File Transfer
