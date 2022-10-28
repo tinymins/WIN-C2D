@@ -109,8 +109,8 @@ color 0E
 echo =======================
 echo ☆☆☆☆☆☆请确认信息(Y/N)☆☆☆☆☆☆
 echo ●需要转移的用户文件夹：　　　　"%currentSystemDriver%:\Users\%sourceUserName%\"
-echo ●希望转移到的目标文件夹：　　　"%currentBackupDriver%:\Backup\Users\%targetUserName%\"
-echo ●目标文件夹在目标系统中的位置："%targetBackupDriver%:\Backup\Users\%targetUserName%\"
+echo ●希望转移到的目标文件夹：　　　"%currentBackupDriver%:\Users\%targetUserName%\"
+echo ●目标文件夹在目标系统中的位置："%targetBackupDriver%:\Users\%targetUserName%\"
 echo ●希望转移的目录如下：
 if /i %moveAppData%==y echo ◎整个"AppData"文件夹(包括Local,LocalLow,Roaming文件夹)
 if /i %moveAppDataLocal%==y echo ◎"AppData\\Local"文件夹
@@ -184,14 +184,14 @@ pause
 		@if "%%a"=="%fldName%" @rmdir "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%%fldName%" /S /Q
 	)
 	@REM 目标位置不存在则创建
-	@if not exist "%currentBackupDriver%:\Backup\Users\%targetUserName%\%fldPath%%fldName%" @mkdir "%currentBackupDriver%:\Backup\Users\%targetUserName%\%fldPath%%fldName%"
+	@if not exist "%currentBackupDriver%:\Users\%targetUserName%\%fldPath%%fldName%" @mkdir "%currentBackupDriver%:\Users\%targetUserName%\%fldPath%%fldName%"
 	@REM 原始位置存在则移动目录树并创建硬链接 否则根据用户类型决定是否创建
 	@if exist "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%%fldName%" (
-		@robocopy "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%%fldName%" "%currentBackupDriver%:\Backup\Users\%targetUserName%\%fldPath%%fldName%" /E /COPYALL /XJ
+		@robocopy "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%%fldName%" "%currentBackupDriver%:\Users\%targetUserName%\%fldPath%%fldName%" /E /COPYALL /XJ
 		@rmdir "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%%fldName%" /S /Q
-		@mklink /J "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%%fldName%" "%targetBackupDriver%:\Backup\Users\%targetUserName%\%fldPath%%fldName%"
+		@mklink /J "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%%fldName%" "%targetBackupDriver%:\Users\%targetUserName%\%fldPath%%fldName%"
 	) else (
-		@if "%userType%"=="1" @mklink /J "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%%fldName%" "%targetBackupDriver%:\Backup\Users\%targetUserName%\%fldPath%%fldName%"
+		@if "%userType%"=="1" @mklink /J "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%%fldName%" "%targetBackupDriver%:\Users\%targetUserName%\%fldPath%%fldName%"
 	)
 	@goto :eof
 
