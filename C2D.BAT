@@ -157,6 +157,7 @@ pause
 @call :MoveFolder "" "Downloads" %userType%
 @call :MoveFolder "" "Desktop" %userType%
 @call :MoveFolder "" "Virtual Machines" %userType%
+@call :MoveFolder "" ".SwitchHosts" %userType%
 @call :MoveFolder "" ".android" %userType%
 @call :MoveFolder "" ".idlerc" %userType%
 @call :MoveFolder "" ".ssh" %userType%
