@@ -57,18 +57,18 @@ set moveAppDataLocal=N
 set moveAppDataLocalLow=N
 set moveAppDataRoaming=N
 set userConform=Null
-set userTempFile=user.C2D.tmp
 
 REM 选择需要转移的用户
 echo Shift +F10
 echo =======================
 echo 本机用户列表：
-dir %currentSystemDriver%:\Users /b /a:d /o>%userTempFile%
 set n=0
-for /f "delims=" %%i in (%userTempFile%) do (
+for /f "delims=" %%i in ('dir %currentSystemDriver%:\Users /b /a:d /o') do (
 	set /a n+=1
+	set user!n!=%%i
 	echo !n!.%%i
 )
+set totalUsers=!n!
 echo =======================
 set /p userLine=请选择需要转移文件的用户(输入0退出,X to input yourself):
 if %userLine%==0 goto :end
@@ -79,7 +79,19 @@ if /i %userLine%==X (
 	set targetUserName=!sourceUserName!
 	set /p targetUserName="请输入您希望转移到的文件夹(默认'!sourceUserName!'): "
 ) else (
-	call :G_getrowstr %userLine% %userTempFile% sourceUserName
+	if %userLine% GTR %totalUsers% (
+		color 0E
+		echo 输入的用户编号超出范围
+		pause
+		goto :start
+	)
+	if %userLine% LSS 1 (
+		color 0E
+		echo 输入的用户编号无效
+		pause
+		goto :start
+	)
+	call set sourceUserName=%%user%userLine%%%
 	set targetUserName=!sourceUserName!
 )
 if "%sourceUserName%"=="" (
@@ -93,7 +105,6 @@ if "%targetUserName%"=="" (
 	echo 输入的目标用户名错误
 	goto :start
 )
-if exist "%userTempFile%" del "%userTempFile%"
 
 REM 选择需要转移的文件夹
 set /p moveAppData="是否转移"AppData"文件夹？(该文件夹包含应用程序数据及缓存)(Y/N): "
@@ -171,7 +182,6 @@ pause
 @goto :start
 
 :end
-@if exist "%userTempFile%" del "%userTempFile%"
 @echo 茗伊 @ QQ8421854
 @pause
 @exit
@@ -197,16 +207,3 @@ pause
 		@if "%userType%"=="1" @mklink /J "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%%fldName%" "%targetBackupDriver%:\Users\%targetUserName%\%fldPath%%fldName%"
 	)
 	@goto :eof
-
-:G_getrowstr
-	set %3=
-	set n=0
-	for /f "delims=" %%i in (%2) do (
-		set /a n+=1
-		REM echo !n!
-		if !n!==%1 (
-		set %3=%%i
-		goto :eof
-		)
-	)
-	goto :eof
