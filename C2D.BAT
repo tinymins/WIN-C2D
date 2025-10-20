@@ -141,6 +141,8 @@ pause
 		call :MoveFolder "AppData\" "Local" %userType%
 	) else (
 		call :MoveFolder "AppData\Local\" "TslGame" %userType%
+		call :MoveFolder "AppData\Local\" "JianyingPro" %userType%
+		call :MoveFolder "AppData\Local\" "Plex" %userType%
 	)
 	if /i %moveAppDataLocalLow%==Y call :MoveFolder "" "AppData\LocalLow" %userType%
 	if /i %moveAppDataRoaming%==Y call :MoveFolder "" "AppData\Roaming" %userType%
