@@ -1,0 +1,18 @@
+# 设置BAT文件使用GBK编码，强制保持CRLF换行符
+*.bat text working-tree-encoding=gbk eol=crlf
+*.BAT text working-tree-encoding=gbk eol=crlf
+
+# 设置其他文本文件使用UTF-8编码
+*.md text working-tree-encoding=utf-8
+*.txt text working-tree-encoding=utf-8
+*.json text working-tree-encoding=utf-8
+*.yml text working-tree-encoding=utf-8
+*.yaml text working-tree-encoding=utf-8
+
+# 二进制文件
+*.exe binary
+*.dll binary
+*.ico binary
+*.jpg binary
+*.png binary
+*.gif binary

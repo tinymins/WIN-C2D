@@ -1,31 +1,31 @@
 ::::::::::::::::::::::::::::::::::::::::::
-::¡¡Ãû³Æ£ºWIN7¸öÈËÎÄ¼ş¼Ğ×ªÒÆ¹¤¾ß¡¡¡¡¡¡¡¡::
-::¡¡×÷Õß£ºÜøÒÁ          ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡::
-::¡¡°æ±¾£ºv2.0 2013-2-20¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡::
-::¡¡ÓÃÍ¾£º¿ÉÒÔ×ªÒÆWIN7²Ù×÷ÏµÍ³ÏÂµÄ¡¡¡¡¡¡::
-::¡¡¡¡¡¡¡¡¸öÈËÎÄ¼ş¼Ğ£¨Ê¹ÓÃÓ²Á´½Ó·½Ê½£©¡¡::
-::¡¡¡¡×¢£ºÈçĞè×ªÒÆÁÙÊ±ÎÄ¼şÇëÎñ±ØÊ¹ÓÃµÚ¡¡::
-::¡¡¡¡¡¡¡¡Èı·½Òıµ¼£¬·ñÔò»á³öÏÖÎÄ¼şÕ¼ÓÃ¡¡::
+::ã€€åç§°ï¼šWIN7ä¸ªäººæ–‡ä»¶å¤¹è½¬ç§»å·¥å…·ã€€ã€€ã€€ã€€::
+::ã€€ä½œè€…ï¼šèŒ—ä¼Š          ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€::
+::ã€€ç‰ˆæœ¬ï¼šv2.0 2013-2-20ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€::
+::ã€€ç”¨é€”ï¼šå¯ä»¥è½¬ç§»WIN7æ“ä½œç³»ç»Ÿä¸‹çš„ã€€ã€€ã€€::
+::ã€€ã€€ã€€ã€€ä¸ªäººæ–‡ä»¶å¤¹ï¼ˆä½¿ç”¨ç¡¬é“¾æ¥æ–¹å¼ï¼‰ã€€::
+::ã€€ã€€æ³¨ï¼šå¦‚éœ€è½¬ç§»ä¸´æ—¶æ–‡ä»¶è¯·åŠ¡å¿…ä½¿ç”¨ç¬¬ã€€::
+::ã€€ã€€ã€€ã€€ä¸‰æ–¹å¼•å¯¼ï¼Œå¦åˆ™ä¼šå‡ºç°æ–‡ä»¶å ç”¨ã€€::
 ::::::::::::::::::::::::::::::::::::::::::
 @echo off
 color 0A
-title ¸öÈËÎÄ¼şC¡úD - By ZYM @ ZhaiYiMing.CoM
+title ä¸ªäººæ–‡ä»¶Câ†’D - By ZYM @ ZhaiYiMing.CoM
 setlocal EnableDelayedExpansion
-mode con cols=90 lines=30 & REM colsÊÇÉèÖÃ¿í¶È£¬linesÊÇÉèÖÃ¸ß¶È
-REM È·ÈÏ¹ÜÀíÔ±È¨ÏŞ
+mode con cols=90 lines=30 & REM colsæ˜¯è®¾ç½®å®½åº¦ï¼Œlinesæ˜¯è®¾ç½®é«˜åº¦
+REM ç¡®è®¤ç®¡ç†å‘˜æƒé™
 set UAC=0
 bcdedit>nul
 if errorlevel 1 set UAC=1
 if %UAC%==1 (
 	color CE
 	set exitconf=N
-	echo Ã»ÓĞ¹ÜÀíÔ±È¨ÏŞ£¬ÇëÒÔ¹ÜÀíÔ±È¨ÏŞÔËĞĞ¸Ã³ÌĞò£¡
-	set /p exitconf=ÊäÈëyºöÂÔ¹ÜÀíÔ±È¨ÏŞÑéÖ¤£¬Ôì³ÉµÄºó¹û×ÔĞĞ³Ğµ££º
+	echo æ²¡æœ‰ç®¡ç†å‘˜æƒé™ï¼Œè¯·ä»¥ç®¡ç†å‘˜æƒé™è¿è¡Œè¯¥ç¨‹åºï¼
+	set /p exitconf=è¾“å…¥yå¿½ç•¥ç®¡ç†å‘˜æƒé™éªŒè¯ï¼Œé€ æˆçš„åæœè‡ªè¡Œæ‰¿æ‹…ï¼š
 	if /i NOT !exitconf!==Y (goto :end)
 )
-REM ÒÑÈ·ÈÏ¹ÜÀíÔ±È¨ÏŞ
+REM å·²ç¡®è®¤ç®¡ç†å‘˜æƒé™
 
-REM ÉèÖÃ·ÖÇøÅÌ·û
+REM è®¾ç½®åˆ†åŒºç›˜ç¬¦
 :setDriverName
 color 0A
 cls
@@ -33,20 +33,20 @@ set tempFlag=n
 set currentSystemDriver=C
 set currentBackupDriver=D
 set targetBackupDriver=D
-echo ¡¾·ÖÇøÉèÖÃ¡¿
-echo £½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½
-set /p currentSystemDriver=ÇëÊäÈëµ±Ç°ÎÄ¼şÏµÍ³ÏÂĞè×ªÒÆÊı¾İµÄWin7ÏµÍ³ËùÔÚ·ÖÇøÅÌ·û(Ä¬ÈÏ£ºC):
-set /p currentBackupDriver=ÇëÊäÈëµ±Ç°ÎÄ¼şÏµÍ³ÏÂÎÄ¼ş×ªÒÆÄ¿±êËùÔÚ·ÖÇøÅÌ·û(Ä¬ÈÏ£ºD):
-set /p  targetBackupDriver=ÇëÊäÈëÄ¿±êÎÄ¼şÏµÍ³ÏÂÎÄ¼ş×ªÒÆÄ¿±êËùÔÚ·ÖÇøÅÌ·û(Ä¬ÈÏ£ºD):
-echo £½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½
+echo ã€åˆ†åŒºè®¾ç½®ã€‘
+echo ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼
+set /p currentSystemDriver=è¯·è¾“å…¥å½“å‰æ–‡ä»¶ç³»ç»Ÿä¸‹éœ€è½¬ç§»æ•°æ®çš„Win7ç³»ç»Ÿæ‰€åœ¨åˆ†åŒºç›˜ç¬¦(é»˜è®¤ï¼šC):
+set /p currentBackupDriver=è¯·è¾“å…¥å½“å‰æ–‡ä»¶ç³»ç»Ÿä¸‹æ–‡ä»¶è½¬ç§»ç›®æ ‡æ‰€åœ¨åˆ†åŒºç›˜ç¬¦(é»˜è®¤ï¼šD):
+set /p  targetBackupDriver=è¯·è¾“å…¥ç›®æ ‡æ–‡ä»¶ç³»ç»Ÿä¸‹æ–‡ä»¶è½¬ç§»ç›®æ ‡æ‰€åœ¨åˆ†åŒºç›˜ç¬¦(é»˜è®¤ï¼šD):
+echo ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼
 color 0E
-echo µ±Ç°ÎÄ¼şÏµÍ³ÏÂĞè×ªÒÆÊı¾İµÄWin7ÏµÍ³ËùÔÚ·ÖÇø£º"%currentSystemDriver%:\"
-echo µ±Ç°ÎÄ¼şÏµÍ³ÏÂÎÄ¼ş×ªÒÆÄ¿±êËùÔÚ·ÖÇø£º¡¡¡¡¡¡¡¡"%currentBackupDriver%:\"
-echo Ä¿±êÎÄ¼şÏµÍ³ÏÂÎÄ¼ş×ªÒÆÄ¿±êËùÔÚ·ÖÇø£º¡¡¡¡¡¡¡¡"%targetBackupDriver%:\"
-set /p tempFlag=ÇëÊäÈëYÈ·ÈÏÒÔÉÏĞÅÏ¢,·ñÔòÇëÖØĞÂÊäÈë(Y/N)£º
+echo å½“å‰æ–‡ä»¶ç³»ç»Ÿä¸‹éœ€è½¬ç§»æ•°æ®çš„Win7ç³»ç»Ÿæ‰€åœ¨åˆ†åŒºï¼š"%currentSystemDriver%:\"
+echo å½“å‰æ–‡ä»¶ç³»ç»Ÿä¸‹æ–‡ä»¶è½¬ç§»ç›®æ ‡æ‰€åœ¨åˆ†åŒºï¼šã€€ã€€ã€€ã€€"%currentBackupDriver%:\"
+echo ç›®æ ‡æ–‡ä»¶ç³»ç»Ÿä¸‹æ–‡ä»¶è½¬ç§»ç›®æ ‡æ‰€åœ¨åˆ†åŒºï¼šã€€ã€€ã€€ã€€"%targetBackupDriver%:\"
+set /p tempFlag=è¯·è¾“å…¥Yç¡®è®¤ä»¥ä¸Šä¿¡æ¯,å¦åˆ™è¯·é‡æ–°è¾“å…¥(Y/N)ï¼š
 if /i NOT %tempFlag%==Y goto :setDriverName
 
-REM Ã¿ÂÖ²Ù×÷¿ªÊ¼Ê±µÄ±äÁ¿³õÊ¼»¯
+REM æ¯è½®æ“ä½œå¼€å§‹æ—¶çš„å˜é‡åˆå§‹åŒ–
 :start
 color 0A
 echo off
@@ -58,10 +58,10 @@ set moveAppDataLocalLow=N
 set moveAppDataRoaming=N
 set userConform=Null
 
-REM Ñ¡ÔñĞèÒª×ªÒÆµÄÓÃ»§
+REM é€‰æ‹©éœ€è¦è½¬ç§»çš„ç”¨æˆ·
 echo Shift +F10
 echo =======================
-echo ±¾»úÓÃ»§ÁĞ±í£º
+echo æœ¬æœºç”¨æˆ·åˆ—è¡¨ï¼š
 set n=0
 for /f "delims=" %%i in ('dir %currentSystemDriver%:\Users /b /a:d /o') do (
 	set /a n+=1
@@ -70,24 +70,24 @@ for /f "delims=" %%i in ('dir %currentSystemDriver%:\Users /b /a:d /o') do (
 )
 set totalUsers=!n!
 echo =======================
-set /p userLine=ÇëÑ¡ÔñĞèÒª×ªÒÆÎÄ¼şµÄÓÃ»§(ÊäÈë0ÍË³ö,X to input yourself):
+set /p userLine=è¯·é€‰æ‹©éœ€è¦è½¬ç§»æ–‡ä»¶çš„ç”¨æˆ·(è¾“å…¥0é€€å‡º,X to input yourself):
 if %userLine%==0 goto :end
 if /i %userLine%==N ( goto:start )
 if /i %userLine%==X (
 	set sourceUserName=
-	set /p sourceUserName="ÇëÊäÈëĞèÒª×ªÒÆÎÄ¼şµÄÓÃ»§Ãû: "
+	set /p sourceUserName="è¯·è¾“å…¥éœ€è¦è½¬ç§»æ–‡ä»¶çš„ç”¨æˆ·å: "
 	set targetUserName=!sourceUserName!
-	set /p targetUserName="ÇëÊäÈëÄúÏ£Íû×ªÒÆµ½µÄÎÄ¼ş¼Ğ(Ä¬ÈÏ'!sourceUserName!'): "
+	set /p targetUserName="è¯·è¾“å…¥æ‚¨å¸Œæœ›è½¬ç§»åˆ°çš„æ–‡ä»¶å¤¹(é»˜è®¤'!sourceUserName!'): "
 ) else (
 	if %userLine% GTR %totalUsers% (
 		color 0E
-		echo ÊäÈëµÄÓÃ»§±àºÅ³¬³ö·¶Î§
+		echo è¾“å…¥çš„ç”¨æˆ·ç¼–å·è¶…å‡ºèŒƒå›´
 		pause
 		goto :start
 	)
 	if %userLine% LSS 1 (
 		color 0E
-		echo ÊäÈëµÄÓÃ»§±àºÅÎŞĞ§
+		echo è¾“å…¥çš„ç”¨æˆ·ç¼–å·æ— æ•ˆ
 		pause
 		goto :start
 	)
@@ -96,55 +96,55 @@ if /i %userLine%==X (
 )
 if "%sourceUserName%"=="" (
 	color 0E
-	echo ÊäÈëµÄÔ´ÓÃ»§Ãû´íÎó
+	echo è¾“å…¥çš„æºç”¨æˆ·åé”™è¯¯
 	pause
 	goto :start
 )
 if "%targetUserName%"=="" (
 	color 0E
-	echo ÊäÈëµÄÄ¿±êÓÃ»§Ãû´íÎó
+	echo è¾“å…¥çš„ç›®æ ‡ç”¨æˆ·åé”™è¯¯
 	goto :start
 )
 
-REM Ñ¡ÔñĞèÒª×ªÒÆµÄÎÄ¼ş¼Ğ
-set /p moveAppData="ÊÇ·ñ×ªÒÆ"AppData"ÎÄ¼ş¼Ğ£¿(¸ÃÎÄ¼ş¼Ğ°üº¬Ó¦ÓÃ³ÌĞòÊı¾İ¼°»º´æ)(Y/N): "
+REM é€‰æ‹©éœ€è¦è½¬ç§»çš„æ–‡ä»¶å¤¹
+set /p moveAppData="æ˜¯å¦è½¬ç§»"AppData"æ–‡ä»¶å¤¹ï¼Ÿ(è¯¥æ–‡ä»¶å¤¹åŒ…å«åº”ç”¨ç¨‹åºæ•°æ®åŠç¼“å­˜)(Y/N): "
 if /i NOT %moveAppData%==y (
-	set /p moveAppDataLocal="ÊÇ·ñ×ªÒÆ"AppData\Local"ÎÄ¼ş¼Ğ£¿(¸ÃÎÄ¼ş¼Ğ°üº¬Ä³Ğ©Ó¦ÓÃ³ÌĞòÊı¾İ¼°»º´æ ÈçChromeä¯ÀÀÆ÷)(Y/N): "
-	set /p moveAppDataLocalLow="ÊÇ·ñ×ªÒÆ"AppData\LocalLow"ÎÄ¼ş¼Ğ£¿(¸ÃÎÄ¼ş¼ĞÓÃÀ´´æ·Å¹²ÏíÊı¾İ)(Y/N): "
-	set /p moveAppDataRoaming="ÊÇ·ñ×ªÒÆ"AppData\Roaming"ÎÄ¼ş¼Ğ£¿(¸ÃÎÄ¼ş¼Ğ´æ·ÅÒ»Ğ©Ê¹ÓÃ³ÌĞòºó²úÉúµÄÊı¾İÎÄ¼ş£¬Èç¿Õ¼äÌıÒôÀÖ µÇÈëµÄºÅÂëµÈ¶ø»º´æµÄÒ»Ğ©Êı¾İ)(Y/N): "
+	set /p moveAppDataLocal="æ˜¯å¦è½¬ç§»"AppData\Local"æ–‡ä»¶å¤¹ï¼Ÿ(è¯¥æ–‡ä»¶å¤¹åŒ…å«æŸäº›åº”ç”¨ç¨‹åºæ•°æ®åŠç¼“å­˜ å¦‚Chromeæµè§ˆå™¨)(Y/N): "
+	set /p moveAppDataLocalLow="æ˜¯å¦è½¬ç§»"AppData\LocalLow"æ–‡ä»¶å¤¹ï¼Ÿ(è¯¥æ–‡ä»¶å¤¹ç”¨æ¥å­˜æ”¾å…±äº«æ•°æ®)(Y/N): "
+	set /p moveAppDataRoaming="æ˜¯å¦è½¬ç§»"AppData\Roaming"æ–‡ä»¶å¤¹ï¼Ÿ(è¯¥æ–‡ä»¶å¤¹å­˜æ”¾ä¸€äº›ä½¿ç”¨ç¨‹åºåäº§ç”Ÿçš„æ•°æ®æ–‡ä»¶ï¼Œå¦‚ç©ºé—´å¬éŸ³ä¹ ç™»å…¥çš„å·ç ç­‰è€Œç¼“å­˜çš„ä¸€äº›æ•°æ®)(Y/N): "
 )
 
-REM È·ÈÏĞÅÏ¢
+REM ç¡®è®¤ä¿¡æ¯
 :userConfirm
 color 0E
 echo =======================
-echo ¡î¡î¡î¡î¡î¡îÇëÈ·ÈÏĞÅÏ¢(Y/N)¡î¡î¡î¡î¡î¡î
-echo ¡ñĞèÒª×ªÒÆµÄÓÃ»§ÎÄ¼ş¼Ğ£º¡¡¡¡¡¡¡¡"%currentSystemDriver%:\Users\%sourceUserName%\"
-echo ¡ñÏ£Íû×ªÒÆµ½µÄÄ¿±êÎÄ¼ş¼Ğ£º¡¡¡¡¡¡"%currentBackupDriver%:\Users\%targetUserName%\"
-echo ¡ñÄ¿±êÎÄ¼ş¼ĞÔÚÄ¿±êÏµÍ³ÖĞµÄÎ»ÖÃ£º"%targetBackupDriver%:\Users\%targetUserName%\"
-echo ¡ñÏ£Íû×ªÒÆµÄÄ¿Â¼ÈçÏÂ£º
-if /i %moveAppData%==y echo ¡òÕû¸ö"AppData"ÎÄ¼ş¼Ğ(°üÀ¨Local,LocalLow,RoamingÎÄ¼ş¼Ğ)
-if /i %moveAppDataLocal%==y echo ¡ò"AppData\\Local"ÎÄ¼ş¼Ğ
-if /i %moveAppDataLocalLow%==y echo ¡ò"AppData\\LocalLow"ÎÄ¼ş¼Ğ
-if /i %moveAppDataRoaming%==y echo ¡ò"AppData\\Roaming"ÎÄ¼ş¼Ğ
-set /p userConform="ÇëÈ·ÈÏ(Y/N):"
+echo â˜†â˜†â˜†â˜†â˜†â˜†è¯·ç¡®è®¤ä¿¡æ¯(Y/N)â˜†â˜†â˜†â˜†â˜†â˜†
+echo â—éœ€è¦è½¬ç§»çš„ç”¨æˆ·æ–‡ä»¶å¤¹ï¼šã€€ã€€ã€€ã€€"%currentSystemDriver%:\Users\%sourceUserName%\"
+echo â—å¸Œæœ›è½¬ç§»åˆ°çš„ç›®æ ‡æ–‡ä»¶å¤¹ï¼šã€€ã€€ã€€"%currentBackupDriver%:\Users\%targetUserName%\"
+echo â—ç›®æ ‡æ–‡ä»¶å¤¹åœ¨ç›®æ ‡ç³»ç»Ÿä¸­çš„ä½ç½®ï¼š"%targetBackupDriver%:\Users\%targetUserName%\"
+echo â—å¸Œæœ›è½¬ç§»çš„ç›®å½•å¦‚ä¸‹ï¼š
+if /i %moveAppData%==y echo â—æ•´ä¸ª"AppData"æ–‡ä»¶å¤¹(åŒ…æ‹¬Local,LocalLow,Roamingæ–‡ä»¶å¤¹)
+if /i %moveAppDataLocal%==y echo â—"AppData\\Local"æ–‡ä»¶å¤¹
+if /i %moveAppDataLocalLow%==y echo â—"AppData\\LocalLow"æ–‡ä»¶å¤¹
+if /i %moveAppDataRoaming%==y echo â—"AppData\\Roaming"æ–‡ä»¶å¤¹
+set /p userConform="è¯·ç¡®è®¤(Y/N):"
 if /i %userConform%==N goto :start
 if /i NOT %userConform%==Y goto :userConfirm
 
-REM ×¼±¸¾ÍĞ÷£¬¿ªÊ¼×ªÒÆ¡£
+REM å‡†å¤‡å°±ç»ªï¼Œå¼€å§‹è½¬ç§»ã€‚
 color 0A
-echo £½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½
-echo °´ÈÎÒâ¼ü¿ªÊ¼ÓÃ»§"%sourceUserName%"¸öÈËÎÄ¼ş×ªÒÆ
+echo ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼
+echo æŒ‰ä»»æ„é”®å¼€å§‹ç”¨æˆ·"%sourceUserName%"ä¸ªäººæ–‡ä»¶è½¬ç§»
 pause
 @echo on
 
-@REM ÅĞ¶ÏÓÃ»§ÀàĞÍ
+@REM åˆ¤æ–­ç”¨æˆ·ç±»å‹
 @set userType=1
 @if /i "%sourceUserName%"=="All Users" ( @set userType=0 )
 @if /i "%sourceUserName%"=="Default" ( @set userType=0 )
 @if /i "%sourceUserName%"=="Default User" ( @set userType=0 )
 @if /i "%sourceUserName%"=="Public" ( @set userType=0 )
-@REM ¿ªÊ¼×ªÒÆÊı¾İ
+@REM å¼€å§‹è½¬ç§»æ•°æ®
 @if /i %moveAppData%==Y (
 	call :MoveFolder "" "AppData" %userType%
 ) else (
@@ -176,13 +176,13 @@ pause
 @call :MoveFolder "" ".ssh" %userType%
 @call :MoveFolder "" ".vscode" %userType%
 @call :MoveFolder "" ".config" %userType%
-@echo £½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½£½
-@echo %sourceUserName%ÓÃ»§ÎÄ¼ş×ªÒÆ½áÊø...
+@echo ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼
+@echo %sourceUserName%ç”¨æˆ·æ–‡ä»¶è½¬ç§»ç»“æŸ...
 @pause
 @goto :start
 
 :end
-@echo ÜøÒÁ @ QQ8421854
+@echo èŒ—ä¼Š @ QQ8421854
 @pause
 @exit
 
@@ -192,13 +192,13 @@ pause
 	@set fldName=%2
 	@set fldName=%fldName:"=%
 	@set userType=%3
-	@REM ÅĞ¶ÏÈç¹ûÒÑ¾­ÊÇÓ²Á´½ÓÔòÖ±½ÓÉ¾³ıÄ¿Â¼µã
+	@REM åˆ¤æ–­å¦‚æœå·²ç»æ˜¯ç¡¬é“¾æ¥åˆ™ç›´æ¥åˆ é™¤ç›®å½•ç‚¹
 	@for /f "tokens=*" %%a in ('dir /b /a:l "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%" 2^>nul') do @(
 		@if "%%a"=="%fldName%" @rmdir "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%%fldName%" /S /Q
 	)
-	@REM Ä¿±êÎ»ÖÃ²»´æÔÚÔò´´½¨
+	@REM ç›®æ ‡ä½ç½®ä¸å­˜åœ¨åˆ™åˆ›å»º
 	@if not exist "%currentBackupDriver%:\Users\%targetUserName%\%fldPath%%fldName%" @mkdir "%currentBackupDriver%:\Users\%targetUserName%\%fldPath%%fldName%"
-	@REM Ô­Ê¼Î»ÖÃ´æÔÚÔòÒÆ¶¯Ä¿Â¼Ê÷²¢´´½¨Ó²Á´½Ó ·ñÔò¸ù¾İÓÃ»§ÀàĞÍ¾ö¶¨ÊÇ·ñ´´½¨
+	@REM åŸå§‹ä½ç½®å­˜åœ¨åˆ™ç§»åŠ¨ç›®å½•æ ‘å¹¶åˆ›å»ºç¡¬é“¾æ¥ å¦åˆ™æ ¹æ®ç”¨æˆ·ç±»å‹å†³å®šæ˜¯å¦åˆ›å»º
 	@if exist "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%%fldName%" (
 		@robocopy "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%%fldName%" "%currentBackupDriver%:\Users\%targetUserName%\%fldPath%%fldName%" /E /COPYALL /XJ
 		@rmdir "%currentSystemDriver%:\Users\%sourceUserName%\%fldPath%%fldName%" /S /Q
